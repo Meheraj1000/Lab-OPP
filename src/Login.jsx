@@ -110,14 +110,6 @@ const Login = () => {
               </p>
             </div>
           </form>
-
-          {/* Google Login */}
-          <div className="card-body pt-0">
-            <button onClick={handleGoogleLogin} className="btn btn-secondary w-full">
-              <i className="fa-brands fa-google mr-2"></i>
-              Login with Google
-            </button>
-          </div>
         </div>
       </div>
     </div>
