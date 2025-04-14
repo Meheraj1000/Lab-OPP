@@ -177,7 +177,12 @@ const Register = () => {
                             </p>
                         </div>
                     </form>
-                   
+                    <div className="card-body">
+                        <button onClick={handleGoogleLogin} className="btn btn-secondary">
+                            <i className="fa-brands fa-google"></i>
+                            Register with Google
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
