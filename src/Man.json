@@ -1,0 +1,37 @@
+[
+    {
+      "Name": "Rahim Ahmed",
+      "Id": "CSE220101",
+      "Section": "A",
+      "University Name": "Daffodil International University",
+      "Image": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      "Name": "Karim Hossain",
+      "Id": "CSE220102",
+      "Section": "B",
+      "University": "Daffodil International University",
+      "Image": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    {
+      "Name": "Sajid Islam",
+      "Id": "CSE220103",
+      "Section": "A",
+      "University": "Daffodil International University",
+      "Image": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    {
+      "Name": "Nusrat Jahan",
+      "Id": "CSE220104",
+      "Section": "C",
+      "University": "Daffodil International University",
+      "Image": "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    {
+      "Name": "Mahir Rahman",
+      "Id": "CSE220105",
+      "Section": "B",
+      "University": "Daffodil International University",
+      "Image": "https://randomuser.me/api/portraits/men/4.jpg"
+    }
+]
