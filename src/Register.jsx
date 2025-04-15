@@ -14,46 +14,8 @@ const Register = () => {
     const navigate = useNavigate();
 
 
-    const validatePassword = (password) => {
-        if (!/[A-Z]/.test(password)) {
-            return "Password must have at least one uppercase letter.";
-        }
-        if (!/[a-z]/.test(password)) {
-            return "Password must have at least one lowercase letter.";
-        }
-        if (password.length < 6) {
-            return "Password must be at least 6 characters long.";
-        }
-        return "";
-    };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const error = validatePassword(password);
-    //     if (error) {
-    //         setPasswordError(error);
-    //         return;
-    //     }
-    //     setPasswordError("");
-    //     try {
-    //         await handelRegister(email, password);
-    //         Swal.fire("Success", "Registration successful!", "success");
-    //         navigate("/");
-    //     } catch (error) {
-    //         Swal.fire("Error", error.message, "error");
-    //     }
-    // };
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // const error = validatePassword(password);
-        // if (error) {
-        //     setPasswordError(error);
-        //     return;
-        // }
-        // setPasswordError("");
 
         const userObject = {
             name,
