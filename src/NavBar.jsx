@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { authContext } from './AuthProvider';
-// import logo from './assets/quizkwik-logo.png'; // Assume you have a logo image
 
 const NavBar = () => {
   const [showProfile, setShowProfile] = useState(false);
@@ -15,7 +14,8 @@ const NavBar = () => {
     <div className="navbar bg-[#D1FAE5] shadow-sm px-4">
       {/* Logo + Brand Name */}
       <div className="navbar-start flex items-center gap-2">
-        {/* <img src={logo} alt="QuizKwiK Logo" className="w-8 h-8" /> */}
+      <img src="/src/assets/images.jpeg" alt="Quiz" className="w-6 h-6 bg-[#D1FAE5]" />
+
         <NavLink to="/" className="text-xl font-semibold text-[#034C53]">
           QuizApp
         </NavLink>
@@ -51,6 +51,16 @@ const NavBar = () => {
             <img src={userProfilePic} alt="Your Profile" className="w-6 h-6 rounded-full" />
             <span>{userName}</span>
           </div>
+          <li>
+  <NavLink 
+    to="/leaderboard" 
+    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+  >
+    Leader Board
+  </NavLink>
+</li>
+
+
         </li>
       </>
     )}
