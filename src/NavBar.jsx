@@ -12,7 +12,7 @@ const NavBar = () => {
   const [userName, setUserName] = useState('Alex Johnson');
   
   return (
-    <div className="navbar bg-white shadow-sm px-4">
+    <div className="navbar bg-[#D1FAE5] shadow-sm px-4">
       {/* Logo + Brand Name */}
       <div className="navbar-start flex items-center gap-2">
         {/* <img src={logo} alt="QuizKwiK Logo" className="w-8 h-8" /> */}
