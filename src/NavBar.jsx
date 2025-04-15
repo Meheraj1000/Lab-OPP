@@ -85,8 +85,8 @@ const NavBar = () => {
                 </div>
 
                 {/* Quiz Summary Card */}
-                <div className="mt-5 border-t pt-4 text-sm">
-                  <div className="bg-[#F0F4F8] p-4 rounded-xl shadow-inner mb-4">
+                <div className="mt-5 border-t pt-4 text-sm flex flex-col items-center">
+                  <div className="bg-[#F0F4F8] p-4 rounded-xl shadow-inner w-full text-left mb-4">
                     <h3 className="text-md font-bold text-[#034C53] mb-2">
                       🎯 Quiz Summary
                     </h3>
@@ -98,10 +98,10 @@ const NavBar = () => {
                     </p>
                   </div>
 
-                  {/* Logout Button */}
+                  {/* Centered Logout Button */}
                   <button
                     onClick={handelLogOut}
-                    className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-full">
+                    className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-1/2">
                     Log Out
                   </button>
                 </div>
@@ -113,15 +113,7 @@ const NavBar = () => {
             <button className="btn btn-sm">Login Now</button>
           </NavLink>
         )}
-          <div>
-         <button
-                    onClick={handelLogOut}
-                    className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-full">
-                    Log Out
-                  </button>
       </div>
-      </div>
-    
     </div>
   );
 };
