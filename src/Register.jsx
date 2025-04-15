@@ -44,27 +44,17 @@ const Register = () => {
     //     }
     // };
 
-    const handleGoogleLogin = async () => {
 
-
-        try {
-            await handelGoogleLogin();
-            Swal.fire("Success", "Google login successful!", "success");
-            navigate("/");
-        } catch (error) {
-            Swal.fire("Error", error.message, "error");
-        }
-    };
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        const error = validatePassword(password);
-        if (error) {
-            setPasswordError(error);
-            return;
-        }
-        setPasswordError("");
-    
+
+        // const error = validatePassword(password);
+        // if (error) {
+        //     setPasswordError(error);
+        //     return;
+        // }
+        // setPasswordError("");
+
         const userObject = {
             name,
             email,
@@ -72,31 +62,41 @@ const Register = () => {
             role: role.toUpperCase(),
         };
         console.log(userObject);
-    
+
         try {
-            const response = await fetch("http://localhost:5173/register", {
+            const response = await fetch("http://localhost:8080/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(userObject),
             });
-    
-            const text = await response.text(); // get raw text first
-            const data = text ? JSON.parse(text) : {}; // safely parse if not empty
-    
+
+            console.log(response)
+
+            // JSON ডেটা পার্স করা
+            const data = await response.json();
+            console.log("Response Data:", data);
+
+            // স্ট্যাটাস চেক করে মেসেজ দেখানো
             if (response.ok) {
+                console.log("Registration Successful:", data.message);
                 Swal.fire("Success", "Registration successful!", "success");
-                console.log("Response from backend:", data);
-                navigate("/");
+                const userInfo = {
+                    email: data.email,
+                    name: data.name,
+                    role: data.role
+                };
+                localStorage.setItem('userInfo', JSON.stringify(userInfo));
             } else {
-                Swal.fire("Error", data.message || "Registration failed", "error");
+                Swal.fire("Error", error.message, "error");
             }
+
         } catch (error) {
             Swal.fire("Error", error.message, "error");
         }
     };
-    
+
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col">
@@ -158,7 +158,7 @@ const Register = () => {
                                 onChange={(e) => setRole(e.target.value)}
                             >
                                 <option value="student">Student</option>
-                                <option value="educator">Teacher</option>
+                                <option value="TEACHER">Teacher</option>
                             </select>
                         </div>
 
@@ -166,7 +166,7 @@ const Register = () => {
                             <button type="submit" className="btn btn-primary">
                                 Register
                             </button>
-                            
+
                         </div>
                         <div className="mt-4 text-center">
                             <p>
@@ -177,12 +177,6 @@ const Register = () => {
                             </p>
                         </div>
                     </form>
-                    <div className="card-body">
-                        <button onClick={handleGoogleLogin} className="btn btn-secondary">
-                            <i className="fa-brands fa-google"></i>
-                            Register with Google
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
