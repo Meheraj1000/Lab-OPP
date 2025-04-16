@@ -12,6 +12,7 @@ import PrivateRoute from '../PrivateRoute';
 import Leaderboard from './Leaderboard';
 import QuizListPage from './QuizListPage';
 import QuizSession from './QuizSession';
+import QuizResult from './QuizResult';
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,10 @@ const router = createBrowserRouter([
     path: '/quiz/:id/start',
     element: <PrivateRoute><QuizSession></QuizSession></PrivateRoute>
   },
-
+  {
+    path: '/quiz/:id/result',
+    element: <PrivateRoute><QuizResult></QuizResult></PrivateRoute>
+  },
   {
     path: '/leaderboard',
     element: <Leaderboard></Leaderboard>

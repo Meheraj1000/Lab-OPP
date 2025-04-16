@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useUser from './hooks/UserHook';
 
 const QuizSession = () => {
+    const { userInfo } = useUser();
     const { id } = useParams();
     const navigate = useNavigate();
     const [quiz, setQuiz] = useState(null);
@@ -10,8 +12,6 @@ const QuizSession = () => {
     const [selectedAnswers, setSelectedAnswers] = useState([]);
     const [timeLeft, setTimeLeft] = useState(null);
     const [loading, setLoading] = useState(true);
-
-    console.log(selectedAnswers);
 
     // কুইজ ডাটা ফেচ করা
     useEffect(() => {
@@ -69,21 +69,44 @@ const QuizSession = () => {
         }
     };
 
-    // কুইজ সাবমিট করা
-    const handleSubmit = () => {
-        // স্কোর ক্যালকুলেট করা
-        const score = quiz.questions.reduce((total, question, index) => {
-            return total + (selectedAnswers[index] === question.correctAnswer ? 1 : 0);
-        }, 0);
 
-        // রেজাল্ট পেজে রিডাইরেক্ট
-        navigate(`/quiz/${id}/result`, {
-            state: {
-                totalQuestions: quiz.questions.length,
-                score,
-                quizTitle: quiz.subject
-            }
-        });
+    const handleSubmit = async () => {
+        // Calculate score and collect correct answers
+        const result = quiz.questions.reduce((acc, question, index) => {
+            const isCorrect = selectedAnswers[index] === question.correctAnswer;
+
+            return {
+                score: acc.score + (isCorrect ? 1 : 0),
+                correctAnswers: [...acc.correctAnswers, {
+                    question: question.questionText,
+                    correctAnswer: question.correctAnswer,
+                    userAnswer: selectedAnswers[index] || 'Not answered',
+                    isCorrect
+                }]
+            };
+        }, { score: 0, correctAnswers: [] });
+
+        const resultData = {
+            totalQuestions: quiz.questions.length,
+            score: result.score,
+            correctAnswers: result.correctAnswers,
+            quizTitle: quiz.subject,
+            quizId: id,
+            timeTaken: quiz.durationInMinutes * 60 - timeLeft // Calculate time taken
+        };
+
+        try {
+            // Post the result data to the API
+            await axios.post('http://localhost:8080/api/result-submissions', { ...resultData, attendeId: userInfo?.id });
+
+            // Redirect to result page after successful submission
+            navigate(`/quiz/${id}/result`, {
+                state: resultData
+            });
+        } catch (error) {
+            console.error('Error submitting result:', error);
+            alert('Failed to submit the result. Please try again.');
+        }
     };
 
     if (loading) {
@@ -112,7 +135,7 @@ const QuizSession = () => {
                 <div className="flex justify-between items-center mb-6">
                     <h1 className="text-2xl font-bold">{quiz.subject}</h1>
                     <div className="badge bg-orange-400/20 border border-orange-600 font-bold text-orange-600 w-16">
-                         {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
+                        {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
                     </div>
                 </div>
 
@@ -135,8 +158,8 @@ const QuizSession = () => {
                             <button
                                 key={idx}
                                 className={`btn btn-block justify-start ${selectedAnswers[currentQuestionIndex] === option
-                                        ? 'bg-green-600/20 border border-green-600'
-                                        : ''
+                                    ? 'bg-green-600/20 border border-green-600'
+                                    : ''
                                     }`}
                                 onClick={() => handleAnswerSelect(option)}
                             >
