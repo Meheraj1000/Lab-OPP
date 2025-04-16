@@ -5,26 +5,26 @@ import Men from './Men';
 import Footer from './Footer';
 
 const Home = () => {
-    return (
+  return (
+    <div>
+      <header>
         <div>
-           <header>
-          <div> 
-            <NavBar></NavBar> 
-            </div>
-          <div>
-          <Banner></Banner>
-          </div>
-           </header>
-           <main>
-           <div>
-            <Men></Men>
-           </div>
-           </main>
-           <footer>
-            <Footer></Footer>
-           </footer>
+          <NavBar></NavBar>
         </div>
-    );
+        <div>
+          <Banner></Banner>
+        </div>
+      </header>
+      <main>
+        <div>
+          <Men></Men>
+        </div>
+      </main>
+      <footer>
+        <Footer></Footer>
+      </footer>
+    </div>
+  );
 };
 
 export default Home;

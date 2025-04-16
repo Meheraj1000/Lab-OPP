@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 const AttendQuiz = () => {
   const [quiz, setQuiz] = useState(null);
@@ -64,41 +65,44 @@ const AttendQuiz = () => {
   }
 
   return (
-    <div className="min-h-screen bg-base-200 flex items-center justify-center p-4">
-      <div className="bg-base-100 shadow-xl rounded-lg p-8 max-w-2xl w-full">
-        <h1 className="text-3xl font-bold mb-4 text-center">Welcome to the Quiz</h1>
+    <div>
+      <div className="min-h-screen bg-base-200 flex items-center justify-center p-4">
+        <div className="bg-base-100 shadow-xl rounded-lg p-8 max-w-2xl w-full">
+          <h1 className="text-3xl font-bold mb-4 text-center">Welcome to the Quiz</h1>
 
-        {/* Quiz Info */}
-        <div className="mb-6 space-y-2">
-          <p><span className="font-semibold">Quiz Title:</span> {quiz.subject}</p>
-          <p><span className="font-semibold">Total Questions:</span> {quiz.questions?.length || 0}</p>
-          <p><span className="font-semibold">Time Limit:</span> {quiz.durationInMinutes} Minutes</p>
-        </div>
+          {/* Quiz Info */}
+          <div className="mb-6 space-y-2">
+            <p><span className="font-semibold">Quiz Title:</span> {quiz.subject}</p>
+            <p><span className="font-semibold">Total Questions:</span> {quiz.questions?.length || 0}</p>
+            <p><span className="font-semibold">Time Limit:</span> {quiz.durationInMinutes} Minutes</p>
+          </div>
 
-        {/* Instructions */}
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">Instructions:</h2>
-          <ul className="list-disc list-inside space-y-1 text-sm">
-            <li>No negative marking.</li>
-            <li>You cannot go back to previous questions.</li>
-            <li>Timer will start once you click "Start Quiz".</li>
-          </ul>
-        </div>
+          {/* Instructions */}
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold mb-2">Instructions:</h2>
+            <ul className="list-disc list-inside space-y-1 text-sm">
+              <li>No negative marking.</li>
+              <li>You cannot go back to previous questions.</li>
+              <li>Timer will start once you click "Start Quiz".</li>
+            </ul>
+          </div>
 
-        {/* Start Quiz Button */}
-        <div className="text-center">
-          <button
-            className="btn btn-primary w-full"
-            onClick={() => {
-              // Navigate to the first question or quiz session
-              window.location.href = `/quiz/${id}/start`;
-            }}
-          >
-            Start Quiz
-          </button>
+          {/* Start Quiz Button */}
+          <div className="text-center">
+            <button
+              className="btn btn-primary w-full"
+              onClick={() => {
+                // Navigate to the first question or quiz session
+                window.location.href = `/quiz/${id}/start`;
+              }}
+            >
+              Start Quiz
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
   );
 };
 
