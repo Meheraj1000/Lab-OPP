@@ -23,7 +23,7 @@ const NavBar = () => {
       {/* Center Menu */}
       <div className='flex flex-1 items-center justify-end gap-4 uppercase me-8 font-semibold' >
         <NavLink className={"hover:text-primary"} to="/createQuiz">Create</NavLink>
-        <NavLink className={"hover:text-primary"} to="/attendQuiz">Attend</NavLink>
+        <NavLink className={"hover:text-primary"} to="/allQuizs">Attend</NavLink>
       </div>
 
       {/* Right Side */}
