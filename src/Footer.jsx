@@ -34,13 +34,13 @@ const Footer = () => {
         <div>
           <h6 className="text-lg font-semibold mb-3 text-emerald-400">Follow Us</h6>
           <div className="flex space-x-4">
-            <a href="#" className="text-gray-300 hover:text-white">
+            <a href="https://x.com/twitter?lang=en" className="text-gray-300 hover:text-white">
               <i className="fab fa-twitter text-xl"></i>
             </a>
-            <a href="#" className="text-gray-300 hover:text-white">
+            <a href="https://www.youtube.com/" className="text-gray-300 hover:text-white">
               <i className="fab fa-youtube text-xl"></i>
             </a>
-            <a href="#" className="text-gray-300 hover:text-white">
+            <a href="" className="text-gray-300 hover:text-white">
               <i className="fab fa-facebook-f text-xl"></i>
             </a>
           </div>
