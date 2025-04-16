@@ -1,57 +1,48 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import  { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from './firebase';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 
-export const authContext=createContext();
-export const useAuth=()=> useContext(authContext)
+export const authContext = createContext();
+export const useAuth = () => useContext(authContext)
 
-const AuthProvider = ({routes}) => {
-    const [user, steUser] = useState(null)
-    const [loading, setLoding] = useState(true)
+const AuthProvider = ({ routes }) => {
+    const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
+    // Initialize user from localStorage on component mount
+    useEffect(() => {
+        const storedUser = localStorage.getItem('userInfo');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+        setLoading(false);
+    }, []);
 
-const googleProvider=new  GoogleAuthProvider();
+    const handleLogin = (userData) => {
+        // Store user data in localStorage
+        localStorage.setItem('userInfo', JSON.stringify(userData));
+        setUser(userData);
+    };
 
-const handelRegister=(email,password)=>{
-    setLoding(true);
-    return createUserWithEmailAndPassword(auth,email,password)
-}
+    const handleLogout = () => {
+        // Remove user data from localStorage
+        localStorage.removeItem('userInfo');
+        setUser(null);
 
-const handelLogin=(email,password)=>{
-    setLoding(true);
-    return signInWithEmailAndPassword(auth,email,password)
-}
+        // If using tokens, remove them too
+        localStorage.removeItem('authToken');
+    };
 
-const handelLogOut= ()=>{
-    setLoding(true);
-    return signOut(auth)
-}
+    const handleRegister = (userData) => {
+        // Similar to login after successful registration
+        handleLogin(userData);
+    };
 
-const handelGoogleLogin=()=>{
-    setLoding(true);
-    return signInWithPopup(auth,googleProvider)
-}
-useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      steUser(currentUser);
-      setLoding(false);
-    });
-
-    return () => unsubscribe(); // Cleanup subscription on unmount
-  }, []);
-    const authinfo={
-        handelRegister ,
-        handelLogin,
-        handelLogOut,
-        handelGoogleLogin,
-        user, steUser,
-        loading, setLoding,
-
-
-
-        
-
+    const authinfo = {
+        handleRegister,
+        handleLogin,
+        handleLogout,
+        user, setUser,
+        loading, setLoading,
     }
     return (
         <div>

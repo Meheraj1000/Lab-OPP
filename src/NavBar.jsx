@@ -1,20 +1,23 @@
 import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { authContext } from './AuthProvider';
+import { FaUserCircle } from "react-icons/fa";
+
 
 const NavBar = () => {
   const [showProfile, setShowProfile] = useState(false);
-  const { user, handelLogOut } = useContext(authContext);
+  const { user, handleLogout } = useContext(authContext);
   const [userHasTakenQuiz, setUserHasTakenQuiz] = useState(true);
   const [userRank, setUserRank] = useState(12);
   const [userProfilePic, setUserProfilePic] = useState('/images/user123.jpg');
   const [userName, setUserName] = useState('Alex Johnson');
-  
+
+
   return (
     <div className="navbar bg-[#D1FAE5] shadow-sm px-4">
       {/* Logo + Brand Name */}
       <div className="navbar-start flex items-center gap-2">
-      <img src="/src/assets/images.jpeg" alt="Quiz" className="w-6 h-6 bg-[#D1FAE5]" />
+        <img src="/src/assets/images.jpeg" alt="Quiz" className="w-6 h-6 bg-[#D1FAE5]" />
 
         <NavLink to="/" className="text-xl font-semibold text-[#034C53]">
           QuizApp
@@ -24,7 +27,7 @@ const NavBar = () => {
       {/* Center Menu */}
       <div className="navbar-center hidden lg:flex gap-6">
         {/* Trivia Dropdown */}
-       
+
 
         {/* Quiz Dropdown */}
         <div className="dropdown dropdown-hover">
@@ -39,33 +42,33 @@ const NavBar = () => {
 
         {/* Leaderboard Dropdown */}
         <div className="dropdown dropdown-hover">
-  <label tabIndex={0} className="cursor-pointer font-medium text-gray-700">
-    Rankboard ▼
-  </label>
-  <ul tabIndex={0} className="menu dropdown-content bg-white rounded-box w-56 mt-2 shadow text-sm">    {userHasTakenQuiz && (
-      <>
-        <li className="menu-title">Your Rank</li>
-        <li className="flex flex-col items-start px-4 py-2">
-          <span className="text-xs text-gray-500">Rank #{userRank}</span>
-          <div className="flex items-center gap-2 mt-1">
-            <img src={userProfilePic} alt="Your Profile" className="w-6 h-6 rounded-full" />
-            <span>{userName}</span>
-          </div>
-          <li>
-  <NavLink 
-    to="/leaderboard" 
-    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-  >
-    Leader Board
-  </NavLink>
-</li>
+          <label tabIndex={0} className="cursor-pointer font-medium text-gray-700">
+            Rankboard ▼
+          </label>
+          <ul tabIndex={0} className="menu dropdown-content bg-white rounded-box w-56 mt-2 shadow text-sm">    {userHasTakenQuiz && (
+            <>
+              <li className="menu-title">Your Rank</li>
+              <li className="flex flex-col items-start px-4 py-2">
+                <span className="text-xs text-gray-500">Rank #{userRank}</span>
+                <div className="flex items-center gap-2 mt-1">
+                  <img src={userProfilePic} alt="Your Profile" className="w-6 h-6 rounded-full" />
+                  <span>{userName}</span>
+                </div>
+                <li>
+                  <NavLink
+                    to="/leaderboard"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+                  >
+                    Leader Board
+                  </NavLink>
+                </li>
 
 
-        </li>
-      </>
-    )}
-  </ul>
-</div>
+              </li>
+            </>
+          )}
+          </ul>
+        </div>
 
       </div>
 
@@ -77,11 +80,12 @@ const NavBar = () => {
               onClick={() => setShowProfile((prev) => !prev)}
               className="flex items-center focus:outline-none"
             >
-              <img
-                className="w-8 h-8 rounded-full border border-gray-300"
-                src={user.photoURL}
-                alt="User Avatar"
-              />
+              <div>
+                <FaUserCircle
+                  className="w-8 h-8 rounded-full border border-white bg-white" color='black'
+                />
+              </div>
+
             </button>
 
             {showProfile && (
@@ -107,7 +111,7 @@ const NavBar = () => {
                   </div>
 
                   <button
-                    onClick={handelLogOut}
+                    onClick={handleLogout}
                     className="btn btn-sm bg-red-500 hover:bg-red-600 text-white w-1/2"
                   >
                     Log Out

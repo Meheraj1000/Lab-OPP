@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Register = () => {
-    const { handelRegister, handelGoogleLogin } = useAuth();
+    const { handleRegister } = useAuth();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [photoURL, setPhotoURL] = useState("");
@@ -49,7 +49,8 @@ const Register = () => {
                     name: data.name,
                     role: data.role
                 };
-                localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                handleRegister(userInfo);
+                navigate("/")
             } else {
                 Swal.fire("Error", error.message, "error");
             }

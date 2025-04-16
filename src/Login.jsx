@@ -4,7 +4,7 @@ import { useAuth } from './AuthProvider';
 import Swal from 'sweetalert2';
 
 const Login = () => {
-  const { handelLogin, handelGoogleLogin } = useAuth();
+  const { handleLogin } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -17,35 +17,29 @@ const Login = () => {
     console.log('Login Request Data:', loginData);
 
     try {
-      const response = await fetch('https://your-api.com/api/login', {
+      const response = await fetch('http://localhost:8080/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginData),
       });
 
       const data = await response.json();
-      console.log('Server Response:', data);
+      console.log(data)
 
       if (!response.ok) {
         throw new Error(data.message || 'Login failed');
       }
 
       Swal.fire('Success', 'Login successful!', 'success');
+      handleLogin(data);
       navigate('/');
+
+
     } catch (error) {
       Swal.fire('Error', error.message, 'error');
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      await handelGoogleLogin();
-      Swal.fire('Success', 'Google login successful!', 'success');
-      navigate('/');
-    } catch (error) {
-      Swal.fire('Error', error.message, 'error');
-    }
-  };
 
   return (
     <div className="hero bg-base-200 min-h-screen">

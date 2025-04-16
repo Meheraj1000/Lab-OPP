@@ -50,13 +50,20 @@ const CreateQuiz = () => {
     console.log('Final Quiz Object:', quizData);
 
     // Future API call
-    fetch('http://localhost:5173/createQuiz', {
+    fetch('http://localhost:8080/api/quizzes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(quizData),
     })
       .then((res) => res.json())
-      .then((data) => console.log('Saved:', data))
+      .then((data) => {
+        console.log('Saved:', data)
+        Swal.fire({
+          title: "Good job!",
+          text: "Question is created!",
+          icon: "success"
+        });
+      })
       .catch((err) => console.error('Save error:', err));
   };
 
