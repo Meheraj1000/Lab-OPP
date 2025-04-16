@@ -22,10 +22,10 @@ const Banner = () => {
             Dive into the world of knowledge! Create your own quizzes or test your skills with quizzes from others.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-            <NavLink to="/createQuiz" className="btn btn-primary px-6 py-3 text-lg rounded-xl shadow-md">
+            <NavLink to="/createQuiz" className="btn btn-primary border px-6 py-3 text-lg rounded-xl shadow-md">
               Create Quiz
             </NavLink>
-            <NavLink to="/allQuizs" className="btn btn-outline text-white btn-primary px-6 py-3 text-lg rounded-xl shadow-md">
+            <NavLink to="/allQuizs" className="btn btn-outline text-primary bg-white hover:text-white hover:bg-primary px-6 py-3 text-lg rounded-xl shadow-md">
               Attend Quiz
             </NavLink>
           </div>
