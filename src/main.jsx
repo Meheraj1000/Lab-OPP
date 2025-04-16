@@ -10,36 +10,51 @@ import CreateQuiz from './CreateQuiz';
 import AttendQuiz from './AttendQuiz';
 import PrivateRoute from '../PrivateRoute';
 import Leaderboard from './Leaderboard';
+import QuizListPage from './QuizListPage';
+import QuizSession from './QuizSession';
+import QuizResult from './QuizResult';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element:<Home></Home>,
+    element: <Home></Home>,
   },
   {
-    path:'/register',
-    element:<Register></Register>
+    path: '/register',
+    element: <Register></Register>
   },
   {
-    path:'/login',
-    element:<Login></Login>
+    path: '/login',
+    element: <Login></Login>
   },
   {
-    path:'/createQuiz',
-    element:<PrivateRoute><CreateQuiz></CreateQuiz></PrivateRoute>
+    path: '/createQuiz',
+    element: <PrivateRoute><CreateQuiz></CreateQuiz></PrivateRoute>
   },
   {
-    path:'/attendQuiz',
-    element:<PrivateRoute><AttendQuiz></AttendQuiz></PrivateRoute>
+    path: '/allQuizs',
+    element: <PrivateRoute><QuizListPage></QuizListPage></PrivateRoute>
   },
   {
-    path:'/leaderboard',
-    element:<Leaderboard></Leaderboard>
+    path: '/quiz/:id',
+    element: <PrivateRoute><AttendQuiz></AttendQuiz></PrivateRoute>
+  },
+  {
+    path: '/quiz/:id/start',
+    element: <PrivateRoute><QuizSession></QuizSession></PrivateRoute>
+  },
+  {
+    path: '/quiz/:id/result',
+    element: <PrivateRoute><QuizResult></QuizResult></PrivateRoute>
+  },
+  {
+    path: '/leaderboard',
+    element: <Leaderboard></Leaderboard>
   }
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
- <AuthProvider routes={<RouterProvider router={router} />}></AuthProvider>
+    <AuthProvider routes={<RouterProvider router={router} />}></AuthProvider>
   </StrictMode>
 );

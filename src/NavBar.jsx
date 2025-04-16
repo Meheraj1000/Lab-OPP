@@ -14,66 +14,20 @@ const NavBar = () => {
 
 
   return (
-    <div className="navbar bg-[#D1FAE5] shadow-sm px-4">
+    <div className="flex justify-between items-center w-[90%] mx-auto h-[80px]">
       {/* Logo + Brand Name */}
-      <div className="navbar-start flex items-center gap-2">
-        <img src="/src/assets/images.jpeg" alt="Quiz" className="w-6 h-6 bg-[#D1FAE5]" />
-
-        <NavLink to="/" className="text-xl font-semibold text-[#034C53]">
-          QuizApp
-        </NavLink>
-      </div>
+      <NavLink to="/" className="text-xl font-semibold text-[#034C53]">
+        QuizApp
+      </NavLink>
 
       {/* Center Menu */}
-      <div className="navbar-center hidden lg:flex gap-6">
-        {/* Trivia Dropdown */}
-
-
-        {/* Quiz Dropdown */}
-        <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="cursor-pointer font-medium text-gray-700">
-            Quiz ▼
-          </label>
-          <ul tabIndex={0} className="menu dropdown-content bg-white rounded-box w-40 mt-2 shadow text-sm">
-            <li><NavLink to="/createQuiz">Create Quiz</NavLink></li>
-            <li><NavLink to="/attendQuiz">Attend Quiz</NavLink></li>
-          </ul>
-        </div>
-
-        {/* Leaderboard Dropdown */}
-        <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="cursor-pointer font-medium text-gray-700">
-            Rankboard ▼
-          </label>
-          <ul tabIndex={0} className="menu dropdown-content bg-white rounded-box w-56 mt-2 shadow text-sm">    {userHasTakenQuiz && (
-            <>
-              <li className="menu-title">Your Rank</li>
-              <li className="flex flex-col items-start px-4 py-2">
-                <span className="text-xs text-gray-500">Rank #{userRank}</span>
-                <div className="flex items-center gap-2 mt-1">
-                  <img src={userProfilePic} alt="Your Profile" className="w-6 h-6 rounded-full" />
-                  <span>{userName}</span>
-                </div>
-                <li>
-                  <NavLink
-                    to="/leaderboard"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-                  >
-                    Leader Board
-                  </NavLink>
-                </li>
-
-
-              </li>
-            </>
-          )}
-          </ul>
-        </div>
-
+      <div className='flex flex-1 items-center justify-end gap-4 uppercase me-8 font-semibold' >
+        <NavLink className={"hover:text-primary"} to="/createQuiz">Create</NavLink>
+        <NavLink className={"hover:text-primary"} to="/allQuizs">Attend</NavLink>
       </div>
 
       {/* Right Side */}
-      <div className="navbar-end gap-4">
+      <div className="">
         {user?.email ? (
           <div className="relative">
             <button
