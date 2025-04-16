@@ -25,11 +25,7 @@ const Banner = () => {
             <NavLink to="/createQuiz" className="btn btn-primary border px-6 py-3 text-lg rounded-xl shadow-md">
               Create Quiz
             </NavLink>
-<<<<<<< HEAD
-            <NavLink to="/attendQuiz" className="btn btn-outline bg-amber-50 text-blue-900 btn-primary px-6 py-3 text-lg rounded-xl shadow-md">
-=======
             <NavLink to="/allQuizs" className="btn btn-outline text-primary bg-white hover:text-white hover:bg-primary px-6 py-3 text-lg rounded-xl shadow-md">
->>>>>>> 9d4dd493a23237f0fb314be481e2256c4ad8c54e
               Attend Quiz
             </NavLink>
           </div>
