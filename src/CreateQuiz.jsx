@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import useUser from './hooks/UserHook';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CreateQuiz = () => {
+  const { userInfo, loading } = useUser(); 
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState('');
   const [questions, setQuestions] = useState([]);
+  const navigate = useNavigate();
 
   const addQuestion = () => {
     setQuestions([
@@ -37,7 +42,7 @@ const CreateQuiz = () => {
   const handleSaveQuiz = () => {
     const quizData = {
       subject: title,
-      createdBy: 'user123',
+      createdBy: userInfo?.id,
       published: true,
       durationInMinutes: parseInt(duration),
       questions: questions.map((q) => ({
@@ -47,7 +52,6 @@ const CreateQuiz = () => {
       })),
     };
 
-    console.log('Final Quiz Object:', quizData);
 
     // Future API call
     fetch('http://localhost:8080/api/quizzes', {
@@ -63,8 +67,15 @@ const CreateQuiz = () => {
           text: "Question is created!",
           icon: "success"
         });
+        navigate("/")
       })
-      .catch((err) => console.error('Save error:', err));
+      .catch((err) => {
+        Swal.fire({
+          title: "Oh no!",
+          text: err,
+          icon: "error"
+        })
+      });
   };
 
   return (
@@ -154,7 +165,7 @@ const CreateQuiz = () => {
               {/* Save Button */}
               <div className="text-center mt-6">
                 <button type="button" className="btn btn-primary w-full" onClick={handleSaveQuiz}>
-                  Save Quiz
+                  Publish Quiz
                 </button>
               </div>
             </form>

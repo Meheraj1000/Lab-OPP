@@ -10,6 +10,7 @@ import CreateQuiz from './CreateQuiz';
 import AttendQuiz from './AttendQuiz';
 import PrivateRoute from '../PrivateRoute';
 import Leaderboard from './Leaderboard';
+import QuizListPage from './QuizListPage';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path:'/attendQuiz',
     element:<PrivateRoute><AttendQuiz></AttendQuiz></PrivateRoute>
+  },
+  {
+    path: '/allQuizs',
+    element: <PrivateRoute><QuizListPage></QuizListPage></PrivateRoute>
   },
   {
     path:'/leaderboard',
