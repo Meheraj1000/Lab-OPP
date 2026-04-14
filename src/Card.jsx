@@ -3,8 +3,8 @@ import React from 'react';
 const Card = ({ man }) => {
   return (
     <div className="h-full flex"> {/* Ensure full height inside grid */}
-      <div className="bg-gray-50 w-full flex flex-col rounded-2xl shadow-lg overflow-hidden border border-gray-200 transition-transform transform hover:scale-105">
-        <figure className="bg-[#10B981] flex justify-center items-center p-6">
+      <div className="w-full overflow-hidden rounded-2xl border border-cyan-100/20 bg-slate-900/80 shadow-xl transition-transform transform hover:scale-105 hover:shadow-cyan-500/20">
+        <figure className="flex items-center justify-center bg-gradient-to-r from-cyan-500 to-emerald-500 p-6">
           <img
             src={man.Image}
             alt={man.Name}
@@ -13,15 +13,15 @@ const Card = ({ man }) => {
         </figure>
         <div className="p-6 text-center flex-grow flex flex-col justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">{man.Name}</h2>
-            <p className="text-sm text-gray-600 mb-1">
-              ID: <span className="font-medium text-gray-700">{man.Id}</span>
+            <h2 className="mb-2 text-2xl font-bold text-white">{man.Name}</h2>
+            <p className="mb-1 text-sm text-slate-300">
+              ID: <span className="font-medium text-cyan-200">{man.Id}</span>
             </p>
-            <p className="text-sm text-gray-600 mb-1">
-              Section: <span className="font-medium text-gray-700">{man.Section}</span>
+            <p className="mb-1 text-sm text-slate-300">
+              Section: <span className="font-medium text-cyan-200">{man.Section}</span>
             </p>
-            <p className="text-sm text-gray-600">
-              University: <span className="font-medium text-gray-700">{man.University || man['University Name']}</span>
+            <p className="text-sm text-slate-300">
+              University: <span className="font-medium text-cyan-200">{man.University || man['University Name']}</span>
             </p>
           </div>
         </div>

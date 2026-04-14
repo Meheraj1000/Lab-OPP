@@ -11,16 +11,16 @@ const Men = () => {
   }, []);
 
   return (
-    <div className="bg-[#D1FAE5] py-14 px-6 "> {/* Light Mint */}
+    <section className="bg-gradient-to-b from-slate-950 via-cyan-950 to-slate-900 py-16 px-6">
       <div className="text-center mb-10">
-  <h1 className="text-4xl font-extrabold text-black tracking-wide">
+  <h1 className="text-4xl font-extrabold text-white tracking-wide">
     Made By
   </h1>
-  <p className="text-black mt-2 text-xl">
+  <p className="text-cyan-100 mt-2 text-xl">
     Meet the creators behind this project
   </p>
   <div className="mt-4 flex justify-center">
-    <div className="w-3xl h-1 bg-emerald-500 rounded-full shadow-sm"></div>
+    <div className="h-1 w-80 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 shadow-sm"></div>
   </div>
 </div>
 
@@ -32,13 +32,13 @@ const Men = () => {
               <Card man={man} key={man.id} />
             ))
           ) : (
-            <div className="col-span-full text-black text-center text-lg">
+            <div className="col-span-full text-cyan-100 text-center text-lg">
               Loading team...
             </div>
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

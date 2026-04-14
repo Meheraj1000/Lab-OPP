@@ -13,6 +13,7 @@ import Leaderboard from './Leaderboard';
 import QuizListPage from './QuizListPage';
 import QuizSession from './QuizSession';
 import QuizResult from './QuizResult';
+import TeacherResults from './TeacherResults';
 
 const router = createBrowserRouter([
   {
@@ -33,19 +34,23 @@ const router = createBrowserRouter([
   },
   {
     path: '/allQuizs',
-    element: <PrivateRoute><QuizListPage></QuizListPage></PrivateRoute>
+    element: <PrivateRoute allowedRoles={['STUDENT', 'ADMIN']}><QuizListPage></QuizListPage></PrivateRoute>
   },
   {
     path: '/quiz/:id',
-    element: <PrivateRoute><AttendQuiz></AttendQuiz></PrivateRoute>
+    element: <PrivateRoute allowedRoles={['STUDENT', 'ADMIN']}><AttendQuiz></AttendQuiz></PrivateRoute>
   },
   {
     path: '/quiz/:id/start',
-    element: <PrivateRoute><QuizSession></QuizSession></PrivateRoute>
+    element: <PrivateRoute allowedRoles={['STUDENT', 'ADMIN']}><QuizSession></QuizSession></PrivateRoute>
   },
   {
     path: '/quiz/:id/result',
-    element: <PrivateRoute><QuizResult></QuizResult></PrivateRoute>
+    element: <PrivateRoute allowedRoles={['STUDENT', 'ADMIN']}><QuizResult></QuizResult></PrivateRoute>
+  },
+  {
+    path: '/teacher-results',
+    element: <PrivateRoute allowedRoles={['TEACHER', 'ADMIN']}><TeacherResults></TeacherResults></PrivateRoute>
   },
   {
     path: '/leaderboard',
