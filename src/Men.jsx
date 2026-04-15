@@ -29,7 +29,7 @@ const Men = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-5 max-w-7xl w-full items-stretch">
           {mans.length > 0 ? (
             mans.map((man) => (
-              <Card man={man} key={man.id} />
+              <Card man={man} key={man.Id || man.Name} />
             ))
           ) : (
             <div className="col-span-full text-cyan-100 text-center text-lg">

@@ -6,12 +6,14 @@ import { useAuth } from './AuthProvider';
 
 const CreateQuiz = () => {
   const { user, loading: authLoading } = useAuth();
+  console.log('Auth User:', user);
   const { userInfo, loading } = useUser(); 
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState('');
   const [questions, setQuestions] = useState([]);
   const navigate = useNavigate();
   const userRole = String(userInfo?.role || user?.role || '').toUpperCase();
+  console.log('User Role:', userInfo);
   const creatorId = userInfo?.id || user?.id || user?.userId;
   const canCreateQuiz = userRole && userRole !== 'STUDENT';
 
@@ -53,7 +55,6 @@ const CreateQuiz = () => {
       });
       return;
     }
-
     if (!title.trim() || !duration || questions.length === 0) {
       Swal.fire({
         title: 'Incomplete quiz',
@@ -62,6 +63,7 @@ const CreateQuiz = () => {
       });
       return;
     }
+    
 
     const hasInvalidQuestion = questions.some((q) => {
       if (!q.questionText.trim()) {
@@ -102,6 +104,8 @@ const CreateQuiz = () => {
       });
 
       const data = await res.json();
+      console.log('API Response:', data);
+      console.log("quizData:", quizData);
 
       if (!res.ok) {
         throw new Error(data?.message || 'Failed to create quiz');
