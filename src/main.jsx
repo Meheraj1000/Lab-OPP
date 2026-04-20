@@ -14,6 +14,7 @@ import QuizListPage from './QuizListPage';
 import QuizSession from './QuizSession';
 import QuizResult from './QuizResult';
 import TeacherResults from './TeacherResults';
+import AIAssistant from './AIAssistant';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: '/createQuiz',
     element: <PrivateRoute><CreateQuiz></CreateQuiz></PrivateRoute>
+  },
+  {
+    path: '/ai',
+    element: <PrivateRoute><AIAssistant></AIAssistant></PrivateRoute>
   },
   {
     path: '/allQuizs',

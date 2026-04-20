@@ -190,6 +190,7 @@ const NavBar = () => {
       <div className='me-8 flex flex-1 items-center justify-end gap-5 text-sm font-bold uppercase tracking-wide text-slate-200'>
         {canCreateQuiz && <NavLink className={"rounded-lg px-3 py-2 transition hover:bg-white/10 hover:text-cyan-300"} to="/createQuiz">Create</NavLink>}
         {!isTeacher && <NavLink className={"rounded-lg px-3 py-2 transition hover:bg-white/10 hover:text-cyan-300"} to="/allQuizs">Attend</NavLink>}
+         {!isTeacher && <NavLink className={"rounded-lg px-3 py-2 transition hover:bg-white/10 hover:text-cyan-300"} to="/ai">AI</NavLink>}
         {isTeacher && <NavLink className={"rounded-lg px-3 py-2 transition hover:bg-white/10 hover:text-cyan-300"} to="/teacher-results">Results</NavLink>}
       </div>
 
